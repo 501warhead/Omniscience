@@ -328,6 +328,7 @@ public class EventBreakListener extends OmniListener {
             case DARK_OAK_SIGN:
             case JUNGLE_SIGN:
             case OAK_SIGN:
+            case BAMBOO:
                 return DependantStyle.BOTTOM;
             case BUBBLE_CORAL_WALL_FAN:
             case DEAD_BRAIN_CORAL_WALL_FAN:

@@ -37,7 +37,7 @@ public class EventBreakListener extends OmniListener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockBreak(BlockBreakEvent event) {
-        System.out.println("Block Break - " + event.getBlock().getType());
+        //System.out.println("Block Break - " + event.getBlock().getType());
         OEntry.create().source(event.getPlayer()).brokeBlock(new LocationTransaction<>(event.getBlock().getLocation(), event.getBlock().getState(), null)).save();
         saveContainerDrops(event.getPlayer(), event.getBlock());
         //For rollbacks and restores dependents should be saved after the parent
@@ -136,11 +136,13 @@ public class EventBreakListener extends OmniListener {
     private void saveMultiBreak(Object source, Block broken) {
         if (broken.getType() == Material.CACTUS
                 || broken.getType() == Material.SUGAR_CANE
-                || broken.getType() == Material.KELP_PLANT) {
+                || broken.getType() == Material.KELP_PLANT
+                || broken.getType() == Material.BAMBOO) {
             Block step = broken.getRelative(BlockFace.UP);
             while (step.getType() == Material.CACTUS
                     || step.getType() == Material.SUGAR_CANE
-                    || step.getType() == Material.KELP_PLANT) {
+                    || step.getType() == Material.KELP_PLANT
+                    || broken.getType() == Material.BAMBOO) {
                 OEntry.create().source(source).brokeBlock(new LocationTransaction<>(step.getLocation(), step.getState(), null)).save();
                 saveDependantBreaks(source, step);
                 step = step.getRelative(BlockFace.UP);

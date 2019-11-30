@@ -27,7 +27,7 @@ public class EventPlaceListener extends OmniListener {
         }
         if (event.getBlock().getBlockData() instanceof Scaffolding) {
             Scaffolding sc = (Scaffolding) event.getBlock().getBlockData();
-            System.out.println("Scaffolding placed. Is Bottom? " + sc.isBottom() + ", distance: " + sc.getDistance() + ", maxDistance: " + sc.getMaximumDistance());
+            //System.out.println("Scaffolding placed. Is Bottom? " + sc.isBottom() + ", distance: " + sc.getDistance() + ", maxDistance: " + sc.getMaximumDistance());
         }
 
         OEntry.create().source(event.getPlayer()).placedBlock(new LocationTransaction<>(event.getBlock().getLocation(), event.getBlockReplacedState(), event.getBlock().getState())).save();

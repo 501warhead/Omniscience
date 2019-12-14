@@ -25,7 +25,18 @@ public final class DataKey {
     }
 
     private DataKey(List<String> parts) {
-        this.parts = ImmutableList.copyOf(parts);
+        ImmutableList<String> newParts;
+        try {
+             newParts = ImmutableList.copyOf(parts);
+        } catch (Exception e) {
+            ImmutableList.Builder builder = ImmutableList.<String>builder();
+            for(String st : parts) {
+                builder.add(st);
+            }
+            newParts = builder.build();
+            e.printStackTrace();
+        }
+        this.parts = newParts;
     }
 
     public static DataKey of(String... values) {

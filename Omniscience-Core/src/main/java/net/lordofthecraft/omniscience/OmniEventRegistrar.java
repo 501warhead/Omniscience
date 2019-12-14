@@ -18,10 +18,7 @@ import net.lordofthecraft.omniscience.listener.player.EventQuitListener;
 import net.lordofthecraft.omniscience.listener.player.EventTeleportListener;
 import org.bukkit.plugin.PluginManager;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public enum OmniEventRegistrar {
     INSTANCE;
@@ -85,7 +82,71 @@ public enum OmniEventRegistrar {
     }
 
     public Map<String, PastTenseWithEnabled> getEventMapping() {
-        return ImmutableMap.copyOf(eventMapping);
+        try {
+            return ImmutableMap.copyOf(eventMapping);
+        } catch (Exception e) {
+            return new Map<String, PastTenseWithEnabled>() {
+                @Override
+                public int size() {
+                    return 0;
+                }
+
+                @Override
+                public boolean isEmpty() {
+                    return false;
+                }
+
+                @Override
+                public boolean containsKey(Object key) {
+                    return false;
+                }
+
+                @Override
+                public boolean containsValue(Object value) {
+                    return false;
+                }
+
+                @Override
+                public PastTenseWithEnabled get(Object key) {
+                    return null;
+                }
+
+                @Override
+                public PastTenseWithEnabled put(String key, PastTenseWithEnabled value) {
+                    return null;
+                }
+
+                @Override
+                public PastTenseWithEnabled remove(Object key) {
+                    return null;
+                }
+
+                @Override
+                public void putAll(Map<? extends String, ? extends PastTenseWithEnabled> m) {
+
+                }
+
+                @Override
+                public void clear() {
+
+                }
+
+                @Override
+                public Set<String> keySet() {
+                    return null;
+                }
+
+                @Override
+                public Collection<PastTenseWithEnabled> values() {
+                    return null;
+                }
+
+                @Override
+                public Set<Entry<String, PastTenseWithEnabled>> entrySet() {
+                    return null;
+                }
+            };
+        }
     }
 
     void addEvent(String name, String pastTense, boolean enabled) {

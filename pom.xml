@@ -6,7 +6,7 @@
 
     <groupId>net.lordofthecraft</groupId>
     <artifactId>Omniscience</artifactId>
-    <version>1.0.6</version>
+    <version>1.15-R0.1</version>
     <modules>
         <module>OmniscienceAPI</module>
         <module>Omniscience-Core</module>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.14.2-R0.1-SNAPSHOT</version>
+            <version>1.15-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

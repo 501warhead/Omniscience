@@ -134,20 +134,16 @@ public class EventBreakListener extends OmniListener {
     }
 
     private void saveMultiBreak(Object source, Block broken) {
-        if (broken.getType() == Material.CACTUS
-                || broken.getType() == Material.SUGAR_CANE
-                || broken.getType() == Material.KELP_PLANT
-                || broken.getType() == Material.BAMBOO) {
-            Block step = broken.getRelative(BlockFace.UP);
-            while (step.getType() == Material.CACTUS
+        Block step = broken.getRelative(BlockFace.UP);
+        while (step.getType() == Material.CACTUS
                     || step.getType() == Material.SUGAR_CANE
                     || step.getType() == Material.KELP_PLANT
                     || broken.getType() == Material.BAMBOO) {
                 OEntry.create().source(source).brokeBlock(new LocationTransaction<>(step.getLocation(), step.getState(), null)).save();
                 saveDependantBreaks(source, step);
                 step = step.getRelative(BlockFace.UP);
-            }
-        } else if (broken.getBlockData() instanceof Bed) {
+        }
+        if (broken.getBlockData() instanceof Bed) {
             Bed bed = (Bed) broken.getBlockData();
             if (bed != null) {
                 final Block otherBlock;
@@ -328,7 +324,6 @@ public class EventBreakListener extends OmniListener {
             case DARK_OAK_SIGN:
             case JUNGLE_SIGN:
             case OAK_SIGN:
-            case BAMBOO:
                 return DependantStyle.BOTTOM;
             case BUBBLE_CORAL_WALL_FAN:
             case DEAD_BRAIN_CORAL_WALL_FAN:

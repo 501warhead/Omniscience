@@ -138,7 +138,7 @@ public class EventBreakListener extends OmniListener {
         while (step.getType() == Material.CACTUS
                     || step.getType() == Material.SUGAR_CANE
                     || step.getType() == Material.KELP_PLANT
-                    || broken.getType() == Material.BAMBOO) {
+                    || step.getType() == Material.BAMBOO) {
                 OEntry.create().source(source).brokeBlock(new LocationTransaction<>(step.getLocation(), step.getState(), null)).save();
                 saveDependantBreaks(source, step);
                 step = step.getRelative(BlockFace.UP);

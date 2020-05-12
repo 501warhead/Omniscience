@@ -52,8 +52,8 @@ public class BlockParameter extends BaseParameterHandler {
     }
 
     private boolean areBlockValues(String value) {
-        for (String s : getInputAsList(value)) {
-            if (Material.getMaterial(s) == null || Material.getMaterial(s).isBlock()) {
+        for (String s : getInputAsList(value.toUpperCase())) {
+            if (Material.getMaterial(s) == null || !Material.getMaterial(s).isBlock()) {
                 return false;
             }
         }

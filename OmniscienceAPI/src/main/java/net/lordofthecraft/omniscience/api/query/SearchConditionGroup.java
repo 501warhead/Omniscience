@@ -2,6 +2,7 @@ package net.lordofthecraft.omniscience.api.query;
 
 import com.google.common.collect.Range;
 import org.bukkit.Location;
+import org.bukkit.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,14 @@ public final class SearchConditionGroup implements SearchCondition {
         group.add(FieldCondition.of(LOCATION.then(Y), MatchRule.EQUALS, location.getBlockY()));
         group.add(FieldCondition.of(LOCATION.then(Z), MatchRule.EQUALS, location.getBlockZ()));
         group.add(FieldCondition.of(LOCATION.then(WORLD), MatchRule.EQUALS, location.getWorld().getUID().toString()));
+
+        return group;
+    }
+    
+    public static SearchConditionGroup from(World world) {
+        SearchConditionGroup group = new SearchConditionGroup(Operator.AND);
+
+        group.add(FieldCondition.of(LOCATION.then(WORLD), MatchRule.EQUALS, world.getUID().toString()));
 
         return group;
     }

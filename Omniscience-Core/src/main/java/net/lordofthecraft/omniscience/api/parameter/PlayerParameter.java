@@ -72,6 +72,6 @@ public class PlayerParameter extends BaseParameterHandler {
     @Override
     public Optional<List<String>> suggestTabCompletion(String partial) {
         return Optional.of(generateDefaultsBasedOnPartial(Bukkit.getOnlinePlayers().stream()
-                .map(pl -> pl.getName().toLowerCase()).collect(Collectors.toList()), partial));
+                .map(pl -> pl.getName().toLowerCase()).collect(Collectors.toList()), partial != null ? partial.toLowerCase() : partial));
     }
 }

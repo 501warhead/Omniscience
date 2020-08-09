@@ -49,7 +49,7 @@ public class EventParameter extends BaseParameterHandler {
     @Override
     public Optional<List<String>> suggestTabCompletion(String partial) {
         return Optional.of(generateDefaultsBasedOnPartial(OmniEventRegistrar.INSTANCE.getEventNames()
-                .stream().map(String::toLowerCase).collect(Collectors.toList()), partial));
+                .stream().map(String::toLowerCase).collect(Collectors.toList()), partial != null ? partial.toLowerCase() : partial));
     }
 
     public boolean hasEventNames(String value) {

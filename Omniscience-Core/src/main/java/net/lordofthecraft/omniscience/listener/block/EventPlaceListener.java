@@ -6,6 +6,7 @@ import net.lordofthecraft.omniscience.api.entry.OEntry;
 import net.lordofthecraft.omniscience.listener.OmniListener;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
+import org.bukkit.block.data.type.Scaffolding;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockMultiPlaceEvent;
@@ -23,6 +24,10 @@ public class EventPlaceListener extends OmniListener {
         // Escape out because we don't want to log sign placements twice.
         if (event.getBlock().getState() instanceof Sign) {
             return;
+        }
+        if (event.getBlock().getBlockData() instanceof Scaffolding) {
+            Scaffolding sc = (Scaffolding) event.getBlock().getBlockData();
+            //System.out.println("Scaffolding placed. Is Bottom? " + sc.isBottom() + ", distance: " + sc.getDistance() + ", maxDistance: " + sc.getMaximumDistance());
         }
 
         OEntry.create().source(event.getPlayer()).placedBlock(new LocationTransaction<>(event.getBlock().getLocation(), event.getBlockReplacedState(), event.getBlock().getState())).save();

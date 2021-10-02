@@ -478,7 +478,9 @@ public final class OEntry {
             wrapper.set(LOCATION.then(X), location.getBlockX());
             wrapper.set(LOCATION.then(Y), location.getBlockY());
             wrapper.set(LOCATION.then(Z), location.getBlockZ());
-            wrapper.set(LOCATION.then(WORLD), location.getWorld().getUID().toString());
+            if (location.getWorld() != null) {
+                wrapper.set(LOCATION.then(WORLD), location.getWorld().getUID().toString());
+            }
         }
     }
 

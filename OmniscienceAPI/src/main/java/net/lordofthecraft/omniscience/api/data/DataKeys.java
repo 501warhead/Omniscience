@@ -15,6 +15,7 @@ public final class DataKeys {
     public static final DataKey PLAYER_ID = DataKey.of("Player");
     public static final DataKey CAUSE = DataKey.of("Cause");
     public static final DataKey TARGET = DataKey.of("Target");
+    public static final DataKey TARGET_META = DataKey.of("TargetMeta");
     public static final DataKey COUNT = DataKey.of("Count");
     public static final DataKey CREATED = DataKey.of("Created");
     public static final DataKey BLOCK_DATA = DataKey.of("BlockData");

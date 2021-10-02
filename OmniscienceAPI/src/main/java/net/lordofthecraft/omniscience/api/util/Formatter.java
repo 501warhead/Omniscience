@@ -5,7 +5,7 @@ import static org.bukkit.ChatColor.*;
 public class Formatter {
 
     public static String getPageHeader(int page, int maxPages) {
-        return prefix() + GRAY + " ((Page " + page + "/" + maxPages + "))";
+        return prefix() + YELLOW + BOLD + " (Page " + page + "/" + maxPages + ")";
     }
 
     public static String subHeader(String text) {

@@ -7,6 +7,7 @@ import net.lordofthecraft.omniscience.api.query.FieldCondition;
 import net.lordofthecraft.omniscience.api.query.MatchRule;
 import net.lordofthecraft.omniscience.api.query.Query;
 import net.lordofthecraft.omniscience.api.query.QuerySession;
+import net.lordofthecraft.omniscience.api.util.DataHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -17,11 +18,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class PlayerParameter extends BaseParameterHandler {
+public class RecipientParameter extends BaseParameterHandler {
     private final Pattern pattern = Pattern.compile("[\\w,:-]+");
 
-    public PlayerParameter() {
-        super(ImmutableList.of("p"));
+    public RecipientParameter() {
+        super(ImmutableList.of("rcp"));
     }
 
     @Override
@@ -51,17 +52,17 @@ public class PlayerParameter extends BaseParameterHandler {
                 }
             }
             if (!in.isEmpty()) {
-                query.addCondition(FieldCondition.of(DataKeys.PLAYER_ID, MatchRule.INCLUDES, in));
+                query.addCondition(FieldCondition.of(DataKeys.TARGET_META, MatchRule.INCLUDES, in));
             }
             if (!nin.isEmpty()) {
-                query.addCondition(FieldCondition.of(DataKeys.PLAYER_ID, MatchRule.EXCLUDES, nin));
+                query.addCondition(FieldCondition.of(DataKeys.TARGET_META, MatchRule.EXCLUDES, nin));
 
             }
         } else {
             OfflinePlayer player = Bukkit.getOfflinePlayer(value);
 
             if (player != null) {
-                query.addCondition(FieldCondition.of(DataKeys.PLAYER_ID, MatchRule.EQUALS, player.getUniqueId().toString()));
+                query.addCondition(FieldCondition.of(DataKeys.TARGET_META, MatchRule.EQUALS, player.getUniqueId().toString()));
             }
         }
 

@@ -5,8 +5,7 @@
     <parent>
         <artifactId>Omniscience</artifactId>
         <groupId>net.lordofthecraft</groupId>
-        <version>1.0.5</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>1.16-R0.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

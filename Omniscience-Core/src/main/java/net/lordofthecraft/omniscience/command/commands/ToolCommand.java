@@ -15,63 +15,70 @@ import java.util.List;
 
 public class ToolCommand extends SimpleCommand {
 
-    public ToolCommand() {
-        super(ImmutableList.of("t", "inspect"));
-    }
+	public ToolCommand() {
+		super(ImmutableList.of("t", "inspect"));
+	}
 
-    @Override
-    public UseResult canRun(CommandSender sender) {
-        return sender instanceof Player ? hasPermission(sender, "omniscience.commands.tool") : UseResult.NO_COMMAND_SENDER;
-    }
+	@Override
+	public UseResult canRun(CommandSender sender) {
+		return sender instanceof Player ? hasPermission(sender, "omniscience.commands.tool") : UseResult.NO_COMMAND_SENDER;
+	}
 
-    @Override
-    public String getCommand() {
-        return "tool";
-    }
+	@Override
+	public String getCommand() {
+		return "tool";
+	}
 
-    @Override
-    public String getUsage() {
-        return "";
-    }
+	@Override
+	public String getUsage() {
+		return "";
+	}
 
-    @Override
-    public String getDescription() {
-        return "Turn on or off the Omniscience search tool";
-    }
+	@Override
+	public String getDescription() {
+		return "Turn on or off the Omniscience search tool";
+	}
 
-    @Override
-    public CommandResult run(CommandSender sender, IOmniscience core, String[] args) {
-        if (sender instanceof Player) {
-            Player pl = (Player) sender;
+	@Override
+	public CommandResult run(CommandSender sender, IOmniscience core, String[] args) {
+		if (sender instanceof Player) {
+			Player pl = (Player) sender;
 
-            if (Omniscience.hasActiveWand(pl)) {
-                if (!pl.getInventory().contains(OmniConfig.INSTANCE.getWandMaterial())) {
-                    pl.getInventory().addItem(new ItemStack(OmniConfig.INSTANCE.getWandMaterial()));
-                    pl.sendMessage(GREEN + "Added the Omniscience data tool to your inventory. Happy Searching.");
-                } else {
-                    Omniscience.wandDeactivateFor(pl);
-                    pl.sendMessage(GREEN + "Successfully deactivated the Omniscience Data Tool");
-                }
-            } else {
-                Omniscience.wandActivateFor(pl);
-                if (!pl.getInventory().contains(OmniConfig.INSTANCE.getWandMaterial())) {
-                    pl.getInventory().addItem(new ItemStack(OmniConfig.INSTANCE.getWandMaterial()));
-                    pl.sendMessage(GREEN + "Added the Omniscience data tool to your inventory. Happy Searching.");
-                } else {
-                    pl.sendMessage(GREEN + "Activated the Omniscience Data Tool " + GRAY + "(" + OmniConfig.INSTANCE.getWandMaterial().name() + ")");
-                }
-            }
-        }
-        return CommandResult.success();
-    }
+			if (Omniscience.hasActiveWand(pl)) {
+				int first = pl.getInventory().first(OmniConfig.INSTANCE.getWandMaterial());
+				if (first == -1) {
+					pl.getInventory().addItem(new ItemStack(OmniConfig.INSTANCE.getWandMaterial()));
+					pl.sendMessage(GREEN + "Added the Omniscience data tool to your inventory. Happy Searching!");
+				} else if (pl.getInventory().getItemInMainHand().getType() != OmniConfig.INSTANCE.getWandMaterial()) {
+					ItemStack tool = pl.getInventory().getItem(first).clone();
+					pl.getInventory().remove(pl.getInventory().getItem(first));
+					ItemStack main = pl.getInventory().getItemInMainHand().clone();
+					pl.getInventory().setItemInMainHand(tool);
+					pl.getInventory().setItem(first, main);
+				} else {
+					Omniscience.wandDeactivateFor(pl);
+					pl.sendMessage(GREEN + "Successfully deactivated the Omniscience Data Tool");
+				}
+			} else {
+				Omniscience.wandActivateFor(pl);
+				if (!pl.getInventory().contains(OmniConfig.INSTANCE.getWandMaterial())) {
+					pl.getInventory().addItem(new ItemStack(OmniConfig.INSTANCE.getWandMaterial()));
+					pl.sendMessage(GREEN + "Added the Omniscience data tool to your inventory. Happy Searching.");
+				} else {
+					pl.sendMessage(GREEN + "Activated the Omniscience Data Tool " + GRAY + "(" + OmniConfig.INSTANCE.getWandMaterial().name() + ")");
+				}
+			}
+		}
+		return CommandResult.success();
+	}
 
-    @Override
-    public void buildLiteralArgumentBuilder(LiteralArgumentBuilder<Object> builder) {
-        // NO:OP
-    }
+	@Override
+	public void buildLiteralArgumentBuilder(LiteralArgumentBuilder<Object> builder) {
+		// NO:OP
+	}
 
-    @Override
-    public List<String> getCommandSuggestions(String partial) {
-        return null;
-    }
+	@Override
+	public List<String> getCommandSuggestions(String partial) {
+		return null;
+	}
 }

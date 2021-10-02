@@ -37,11 +37,13 @@ public class EventBreakListener extends OmniListener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockBreak(BlockBreakEvent event) {
+        //System.out.println("Block Break - " + event.getBlock().getType());
         OEntry.create().source(event.getPlayer()).brokeBlock(new LocationTransaction<>(event.getBlock().getLocation(), event.getBlock().getState(), null)).save();
         saveContainerDrops(event.getPlayer(), event.getBlock());
         //For rollbacks and restores dependents should be saved after the parent
         saveMultiBreak(event.getPlayer(), event.getBlock());
     }
+
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockExplode(BlockExplodeEvent event) {
@@ -132,18 +134,16 @@ public class EventBreakListener extends OmniListener {
     }
 
     private void saveMultiBreak(Object source, Block broken) {
-        if (broken.getType() == Material.CACTUS
-                || broken.getType() == Material.SUGAR_CANE
-                || broken.getType() == Material.KELP_PLANT) {
-            Block step = broken.getRelative(BlockFace.UP);
-            while (step.getType() == Material.CACTUS
+        Block step = broken.getRelative(BlockFace.UP);
+        while (step.getType() == Material.CACTUS
                     || step.getType() == Material.SUGAR_CANE
-                    || step.getType() == Material.KELP_PLANT) {
+                    || step.getType() == Material.KELP_PLANT
+                    || step.getType() == Material.BAMBOO) {
                 OEntry.create().source(source).brokeBlock(new LocationTransaction<>(step.getLocation(), step.getState(), null)).save();
                 saveDependantBreaks(source, step);
                 step = step.getRelative(BlockFace.UP);
-            }
-        } else if (broken.getBlockData() instanceof Bed) {
+        }
+        if (broken.getBlockData() instanceof Bed) {
             Bed bed = (Bed) broken.getBlockData();
             if (bed != null) {
                 final Block otherBlock;
@@ -241,6 +241,9 @@ public class EventBreakListener extends OmniListener {
         switch (material) {
             case POPPY:
             case DANDELION:
+            case LILY_OF_THE_VALLEY:
+            case WITHER_ROSE:
+            case CORNFLOWER:
             case OAK_SAPLING:
             case BIRCH_SAPLING:
             case JUNGLE_SAPLING:
@@ -315,6 +318,12 @@ public class EventBreakListener extends OmniListener {
             case ATTACHED_MELON_STEM:
             case ATTACHED_PUMPKIN_STEM:
             case SNOW:
+            case SPRUCE_SIGN:
+            case ACACIA_SIGN:
+            case BIRCH_SIGN:
+            case DARK_OAK_SIGN:
+            case JUNGLE_SIGN:
+            case OAK_SIGN:
                 return DependantStyle.BOTTOM;
             case BUBBLE_CORAL_WALL_FAN:
             case DEAD_BRAIN_CORAL_WALL_FAN:
@@ -356,6 +365,12 @@ public class EventBreakListener extends OmniListener {
             case COCOA_BEANS:
             case LADDER:
             case TRIPWIRE_HOOK:
+            case ACACIA_WALL_SIGN:
+            case BIRCH_WALL_SIGN:
+            case DARK_OAK_WALL_SIGN:
+            case JUNGLE_WALL_SIGN:
+            case OAK_WALL_SIGN:
+            case SPRUCE_WALL_SIGN:
                 return DependantStyle.WALL;
             case DARK_OAK_DOOR:
             case ACACIA_DOOR:

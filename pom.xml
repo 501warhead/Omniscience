@@ -1,88 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.lordofthecraft</groupId>
-    <artifactId>Omniscience</artifactId>
-    <version>1.0.5</version>
-    <modules>
-        <module>OmniscienceAPI</module>
-        <module>Omniscience-Core</module>
-    </modules>
-    <packaging>pom</packaging>
+	<groupId>net.lordofthecraft</groupId>
+	<artifactId>Omniscience</artifactId>
+	<version>1.16-R0.2</version>
+	<modules>
+		<module>OmniscienceAPI</module>
+		<module>Omniscience-Core</module>
+	</modules>
+	<packaging>pom</packaging>
 
-    <name>Omniscience</name>
+	<name>Omniscience</name>
 
-    <description>The Spigot solution to block logging and rollbacks for 1.13.2+</description>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <url>https://lotc.co/</url>
+	<description>The Spigot solution to block logging and rollbacks for 1.13.2+</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<url>https://lotc.co/</url>
 
 	<distributionManagement>
-        <repository>
-            <id>lotc-release</id>
-            <url>https://repo.lordofthecraft.net/artifactory/lotc-releases/</url>
-        </repository>
-    </distributionManagement>
-	
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <defaultGoal>clean package install</defaultGoal>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+		<repository>
+      <id>lotc-release</id>
+      <url>https://repo.lordofthecraft.net/repository/lotc-release/</url>
+    </repository>
+	</distributionManagement>
 
-    <repositories>
-        <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>fawe-repo</id>
-            <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
-        </repository>
-        <repository>
-            <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
-        </repository>
-        <repository>
-            <id>luck-repo</id>
-            <url>https://repo.lucko.me/</url>
-        </repository>
-    </repositories>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<defaultGoal>clean package install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.14.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.8.2</version>
-        </dependency>
-    </dependencies>
+	<repositories>
+		<repository>
+			<id>spigotmc-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>fawe-repo</id>
+			<url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+		</repository>
+		<repository>
+			<id>sk89q-repo</id>
+			<url>http://maven.sk89q.com/repo/</url>
+		</repository>
+		<repository>
+			<id>luck-repo</id>
+			<url>https://repo.lucko.me/</url>
+		</repository>
+		<repository>
+			<id>lotc-release</id>
+			<url>https://repo.lordofthecraft.net/repository/lotc-release/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.15-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.8.2</version>
+		</dependency>
+	</dependencies>
 </project>

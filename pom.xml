@@ -6,7 +6,7 @@
 
 	<groupId>net.lordofthecraft</groupId>
 	<artifactId>Omniscience</artifactId>
-	<version>${revision}</version>
+	<version>1.16-R0.2</version>
 	<modules>
 		<module>OmniscienceAPI</module>
 		<module>Omniscience-Core</module>
@@ -17,16 +17,15 @@
 
 	<description>The Spigot solution to block logging and rollbacks for 1.13.2+</description>
 	<properties>
-		<revision>1.15-R0.2</revision>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<url>https://lotc.co/</url>
 
 	<distributionManagement>
 		<repository>
-			<id>lotc-release</id>
-			<url>https://maven.pkg.github.com/lord-of-the-craft/maven-packages/</url>
-		</repository>
+      <id>lotc-release</id>
+      <url>https://repo.lordofthecraft.net/repository/lotc-release/</url>
+    </repository>
 	</distributionManagement>
 
 	<build>
@@ -65,6 +64,10 @@
 		<repository>
 			<id>luck-repo</id>
 			<url>https://repo.lucko.me/</url>
+		</repository>
+		<repository>
+			<id>lotc-release</id>
+			<url>https://repo.lordofthecraft.net/repository/lotc-release/</url>
 		</repository>
 	</repositories>
 

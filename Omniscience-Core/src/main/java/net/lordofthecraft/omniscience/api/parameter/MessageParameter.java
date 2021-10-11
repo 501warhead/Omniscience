@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 
 public class MessageParameter extends BaseParameterHandler {
-    private final Pattern pattern = Pattern.compile("[\\w!,:-\\\\*]+");
+    private final Pattern pattern = Pattern.compile("[\\w!,'-_.:-\\\\*]+");
 
     public MessageParameter() {
         super(ImmutableList.of("m"));

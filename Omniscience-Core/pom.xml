@@ -46,14 +46,14 @@
                             <relocations>
                                 <relocation>
                                     <pattern>me.lucko.commodore</pattern>
-                                    <shadedPattern>net.lordofthecraft.omniscience.commodore</shadedPattern>
+                                    <shadedPattern>io.github.warhead501.omniscience.commodore</shadedPattern>
                                 </relocation>
                             </relocations>
                             <artifactSet>
                                 <includes>
                                     <include>org.mongodb:mongo-java-driver:**</include>
                                     <include>me.lucko:commodore</include>
-                                    <include>net.lordofthecraft:OmniscienceAPI</include>
+                                    <include>io.github.warhead501:OmniscienceAPI</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

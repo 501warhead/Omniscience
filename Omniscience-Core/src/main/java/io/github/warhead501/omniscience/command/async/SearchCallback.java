@@ -117,11 +117,12 @@ public class SearchCallback implements AsyncCallback {
             ComponentBuilder hoverMessageBuilder = new ComponentBuilder(hoverMessage.toString());
 
             DataHelper.getLocationFromDataWrapper(complete.data).ifPresent(location -> {
-                if (this.session.hasFlag(Flag.EXTENDED)) {
-                    holdingBuilder.append("\n").append(" - ").color(ChatColor.GRAY).append(DataHelper.buildLocation(location, true)).color(ChatColor.GRAY);
+                if (location.getWorld()!=null) {
+                    if (this.session.hasFlag(Flag.EXTENDED)) {
+                        holdingBuilder.append("\n").append(" - ").color(ChatColor.GRAY).append(DataHelper.buildLocation(location, true)).color(ChatColor.GRAY);
+                    }
+                    hoverMessageBuilder.append("\n").append("Location: ").color(ChatColor.DARK_GRAY).append(DataHelper.buildLocation(location, false)).color(ChatColor.GRAY);
                 }
-
-                hoverMessageBuilder.append("\n").append("Location: ").color(ChatColor.DARK_GRAY).append(DataHelper.buildLocation(location, false)).color(ChatColor.GRAY);
             });
 
             HoverEvent infoHover = new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverMessageBuilder.create());

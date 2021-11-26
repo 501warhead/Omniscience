@@ -59,15 +59,16 @@ public class MongoStorageHandler implements StorageHandler {
                 .builder()
                 .hosts(addressMongoCredentialMap)
                 .build();
-
         MongoClientSettings settings = usesAuth ? MongoClientSettings.builder()
                 .applyToClusterSettings(builder -> builder.applySettings(clusterSettings))
                 .credential(cred)
-                .build() : MongoClientSettings.builder()
+                .build()
+                : MongoClientSettings.builder()
                 .applyToClusterSettings(builder -> builder.applySettings(clusterSettings))
                 .build();
         MongoClient client = MongoClients.create(settings);
         database = client.getDatabase(OmniConfig.INSTANCE.getDatabaseName());
+
         this.recordHandler = new MongoRecordHandler(this);
         try {
             MongoCollection<Document> collection = getCollection(collectionName);

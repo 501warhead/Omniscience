@@ -10,15 +10,21 @@ import io.github.warhead501.omniscience.listener.OmniListener;
 import org.bukkit.Location;
 import org.bukkit.block.Container;
 import org.bukkit.block.DoubleChest;
+import org.bukkit.block.Lectern;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerTakeLecternBookEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Objects;
+
+import static io.github.warhead501.omniscience.api.data.InventoryTransaction.ActionType.DEPOSIT;
+import static io.github.warhead501.omniscience.api.data.InventoryTransaction.ActionType.WITHDRAW;
 
 public class EventInventoryListener extends OmniListener {
 
@@ -86,6 +92,23 @@ public class EventInventoryListener extends OmniListener {
                         break;
                 }
             }
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
+    public void onTakeLecternBook(PlayerTakeLecternBookEvent e) {
+        if (w()) {
+            saveLecternTransaction(e.getPlayer(), e.getBook(), e.getLectern(), WITHDRAW);
+        }
+    }
+
+    public static void saveLecternTransaction(Player p, ItemStack book, Lectern lectern, InventoryTransaction.ActionType action) {
+        InventoryTransaction<ItemStack> transaction = new InventoryTransaction<>(book, book, book, 0,
+                lectern.getInventory().getHolder(), action);
+        if (action.equals(WITHDRAW)) {
+            OEntry.create().player(p).withdrew(transaction, lectern.getLocation(), "Lectern").save();
+        } else if (action.equals(DEPOSIT)) {
+            OEntry.create().player(p).deposited(transaction, lectern.getLocation(), "Lectern").save();
         }
     }
 

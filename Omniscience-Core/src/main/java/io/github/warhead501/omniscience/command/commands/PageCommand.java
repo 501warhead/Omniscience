@@ -92,7 +92,7 @@ public class PageCommand extends SimpleCommand {
         if (!NumberUtils.isDigits(args[0])) {
             return CommandResult.failure("Please specify a page number.");
         }
-        int pageNum = Integer.valueOf(args[0]) - 1;
+        int pageNum = Integer.parseInt(args[0]) - 1;
         return showPage(sender, pageNum);
     }
 

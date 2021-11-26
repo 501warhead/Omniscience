@@ -224,7 +224,7 @@ public final class InventoryUtil {
                                 value.getChangedItem(), key, holder, inInventory ? WITHDRAW : DEPOSIT)));
                     }
                     if (tar.firstEmpty() != -1 && leftOver > 0) {
-                        is.setAmount(leftOver > is.getMaxStackSize() ? is.getMaxStackSize() : leftOver);
+                        is.setAmount(Math.min(leftOver, is.getMaxStackSize()));
                         if (inInventory) {
                             transactions.add(new InventoryTransaction<>(is, null, is, e.getSlot(), holder, WITHDRAW));
                         } else {

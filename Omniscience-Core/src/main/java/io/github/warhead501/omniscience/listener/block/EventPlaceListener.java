@@ -1,12 +1,16 @@
 package io.github.warhead501.omniscience.listener.block;
 
 import com.google.common.collect.ImmutableList;
+import io.github.warhead501.omniscience.Omniscience;
+import io.github.warhead501.omniscience.api.data.InventoryTransaction;
 import io.github.warhead501.omniscience.api.data.LocationTransaction;
 import io.github.warhead501.omniscience.api.entry.OEntry;
 import io.github.warhead501.omniscience.listener.OmniListener;
+import io.github.warhead501.omniscience.listener.item.EventInventoryListener;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Lectern;
 import org.bukkit.block.Sign;
-import org.bukkit.block.data.type.Scaffolding;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockMultiPlaceEvent;
@@ -25,11 +29,14 @@ public class EventPlaceListener extends OmniListener {
         if (event.getBlock().getState() instanceof Sign) {
             return;
         }
-        if (event.getBlock().getBlockData() instanceof Scaffolding) {
-            Scaffolding sc = (Scaffolding) event.getBlock().getBlockData();
-            //System.out.println("Scaffolding placed. Is Bottom? " + sc.isBottom() + ", distance: " + sc.getDistance() + ", maxDistance: " + sc.getMaximumDistance());
-        }
 
+        if (event.getBlockPlaced().getType().equals(Material.LECTERN) || event.getBlockPlaced().getType().equals(Material.SOUL_LANTERN) && event.getBlockPlaced().getState() instanceof Lectern &&
+                (event.getItemInHand().getType().equals(Material.WRITTEN_BOOK) || event.getItemInHand().getType().equals(Material.WRITABLE_BOOK)) &&
+                isEnabled("deposit")) {
+            Lectern lectern = (Lectern) event.getBlockPlaced().getState();
+            EventInventoryListener.saveLecternTransaction(event.getPlayer(), event.getItemInHand(), lectern, InventoryTransaction.ActionType.DEPOSIT);
+            return;
+        }
         OEntry.create().source(event.getPlayer()).placedBlock(new LocationTransaction<>(event.getBlock().getLocation(), event.getBlockReplacedState(), event.getBlock().getState())).save();
     }
 
@@ -44,11 +51,17 @@ public class EventPlaceListener extends OmniListener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onSignChange(SignChangeEvent event) {
-        Sign sign = (Sign) event.getBlock().getState();
-        for (int i = 0; i <= 3; i++) {
-            sign.setLine(i, event.getLine(i));
+        if (event.getBlock().getState() instanceof Sign) {
+            Sign sign = (Sign) event.getBlock().getState();
+            for (int i = 0; i <= 3; i++) {
+                if (event.getLine(i) != null) {
+                    sign.setLine(i, event.getLine(i));
+                }
+            }
+            OEntry.create().source(event.getPlayer()).placedBlock(new LocationTransaction<>(event.getBlock().getLocation(), null, sign)).save();
+        } else {
+            Omniscience.getPluginInstance().getLogger().info("Unaple to parse changed sign for; " + event.getBlock());
         }
-        OEntry.create().source(event.getPlayer()).placedBlock(new LocationTransaction<>(event.getBlock().getLocation(), null, sign)).save();
     }
 
     private boolean blockLocationsAreEqual(Location locA, Location locB) {

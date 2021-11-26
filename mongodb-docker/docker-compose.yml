@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  omniscience-mongodb:
+    image: mongo
+    container_name: omniscience-mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /srv/omniscience-mongodb:/data/db
+    expose:
+      - "27017"
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: pterodactyl_nw

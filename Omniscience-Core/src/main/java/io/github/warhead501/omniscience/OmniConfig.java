@@ -3,10 +3,12 @@ package io.github.warhead501.omniscience;
 import io.github.warhead501.omniscience.io.dynamo.DynamoStorageHandler;
 import io.github.warhead501.omniscience.io.StorageHandler;
 import io.github.warhead501.omniscience.io.mongo.MongoStorageHandler;
+import lv.voop.essn.paper.utils.item.ItemUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * The singular location for all end user configured directives from the plugin.yml
@@ -246,8 +248,17 @@ public enum OmniConfig {
     /**
      * @return The material used for the search wand. Must be a block.
      */
-    public Material getWandMaterial() {
+    @Deprecated public Material getWandMaterial() {
         return wandMaterial;
+    }
+
+    /**
+     * @return The item stack used for the search wand. Must be a block.
+     */
+    public ItemStack getWandItem() {
+        ItemStack is = new ItemStack(this.wandMaterial);
+        ItemUtils.setCustomTag(is,"omnisciencetool","tool");
+        return is;
     }
 
     /**

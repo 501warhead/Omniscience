@@ -5,6 +5,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import io.github.warhead501.omniscience.api.interfaces.IOmniscience;
 import io.github.warhead501.omniscience.OmniConfig;
 import io.github.warhead501.omniscience.Omniscience;
+import io.github.warhead501.omniscience.api.util.OmniUtils;
 import io.github.warhead501.omniscience.command.result.CommandResult;
 import io.github.warhead501.omniscience.command.result.UseResult;
 import org.bukkit.command.CommandSender;
@@ -43,13 +44,12 @@ public class ToolCommand extends SimpleCommand {
 	public CommandResult run(CommandSender sender, IOmniscience core, String[] args) {
 		if (sender instanceof Player) {
 			Player pl = (Player) sender;
-
 			if (Omniscience.hasActiveWand(pl)) {
-				int first = pl.getInventory().first(OmniConfig.INSTANCE.getWandMaterial());
+				int first = pl.getInventory().first(OmniConfig.INSTANCE.getWandItem());
 				if (first == -1) {
-					pl.getInventory().addItem(new ItemStack(OmniConfig.INSTANCE.getWandMaterial()));
+					pl.getInventory().addItem(OmniConfig.INSTANCE.getWandItem());
 					pl.sendMessage(GREEN + "Added the Omniscience data tool to your inventory. Happy Searching!");
-				} else if (pl.getInventory().getItemInMainHand().getType() != OmniConfig.INSTANCE.getWandMaterial()) {
+				} else if (!OmniUtils.isOmniTool(pl.getInventory().getItemInMainHand())) {
 					ItemStack tool = pl.getInventory().getItem(first).clone();
 					pl.getInventory().remove(pl.getInventory().getItem(first));
 					ItemStack main = pl.getInventory().getItemInMainHand().clone();
@@ -61,11 +61,11 @@ public class ToolCommand extends SimpleCommand {
 				}
 			} else {
 				Omniscience.wandActivateFor(pl);
-				if (!pl.getInventory().contains(OmniConfig.INSTANCE.getWandMaterial())) {
-					pl.getInventory().addItem(new ItemStack(OmniConfig.INSTANCE.getWandMaterial()));
+				if (!pl.getInventory().contains(OmniConfig.INSTANCE.getWandItem())) {
+					pl.getInventory().addItem(OmniConfig.INSTANCE.getWandItem());
 					pl.sendMessage(GREEN + "Added the Omniscience data tool to your inventory. Happy Searching.");
 				} else {
-					pl.sendMessage(GREEN + "Activated the Omniscience Data Tool " + GRAY + "(" + OmniConfig.INSTANCE.getWandMaterial().name() + ")");
+					pl.sendMessage(GREEN + "Activated the Omniscience Data Tool " + GRAY + "(" + OmniConfig.INSTANCE.getWandItem().getType().name() + ")");
 				}
 			}
 		}

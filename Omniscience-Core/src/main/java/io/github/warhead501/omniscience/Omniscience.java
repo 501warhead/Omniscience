@@ -8,6 +8,7 @@ import io.github.warhead501.omniscience.api.entry.DataEntry;
 import io.github.warhead501.omniscience.api.flag.FlagHandler;
 import io.github.warhead501.omniscience.api.interfaces.IOmniscience;
 import io.github.warhead501.omniscience.api.parameter.ParameterHandler;
+import io.github.warhead501.omniscience.api.util.OmniUtils;
 import io.github.warhead501.omniscience.io.StorageHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

@@ -10,6 +10,7 @@ import io.github.warhead501.omniscience.api.query.SearchConditionGroup;
 import io.github.warhead501.omniscience.api.util.Formatter;
 import io.github.warhead501.omniscience.OmniConfig;
 import io.github.warhead501.omniscience.Omniscience;
+import io.github.warhead501.omniscience.api.util.OmniUtils;
 import io.github.warhead501.omniscience.command.async.SearchCallback;
 import io.github.warhead501.omniscience.command.util.Async;
 import org.bukkit.ChatColor;
@@ -40,7 +41,7 @@ public final class WandInteractListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (!event.hasItem()
-                || event.getItem().getType() != OmniConfig.INSTANCE.getWandMaterial()
+                || !OmniUtils.isOmniTool(event.getItem())
                 || event.getHand() != EquipmentSlot.HAND
                 || !Omniscience.hasActiveWand(event.getPlayer())) {
             return;
@@ -64,14 +65,13 @@ public final class WandInteractListener implements Listener {
         event.getPlayer().sendMessage(Formatter.prefix() + ChatColor.GREEN + "--- "
                 + ChatColor.AQUA + b.getType().name()
                 + ChatColor.WHITE + " at " + ChatColor.GREEN + b.getX() + " " + b.getY() + " " + b.getZ() + ChatColor.GREEN + " ---");
-
         Async.lookup(session, new SearchCallback(session));
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlockPlaced() == null
-                || event.getBlockPlaced().getType() != OmniConfig.INSTANCE.getWandMaterial()
+                || !OmniUtils.isOmniTool(event.getItemInHand())
                 || !Omniscience.hasActiveWand(event.getPlayer())) {
             return;
         }

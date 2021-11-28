@@ -64,10 +64,6 @@
 			<id>luck-repo</id>
 			<url>https://repo.lucko.me/</url>
 		</repository>
-		<repository>
-			<id>lotc-release</id>
-			<url>https://repo.lordofthecraft.net/repository/lotc-release/</url>
-		</repository>
 	</repositories>
 
 	<dependencies>

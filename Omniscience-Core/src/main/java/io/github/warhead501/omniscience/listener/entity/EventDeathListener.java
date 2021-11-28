@@ -18,8 +18,12 @@ public class EventDeathListener extends OmniListener {
 
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
 	public void onEntityDeath(EntityDeathEvent e) {
-		if (!(e.getEntityType() == EntityType.ARMOR_STAND && e.getEntity().getKiller() == null))
-			OEntry.create().source(e.getEntity().getKiller()).kill(e.getEntity()).save();
+		if (!e.getEntityType().equals(EntityType.ARMOR_STAND))
+			if (e.getEntity().getKiller() != null) {
+				try {
+					OEntry.create().source(e.getEntity().getKiller()).kill(e.getEntity()).save();
+				} catch (NullPointerException ignored){}
+			}
 		for (ItemStack drop : e.getDrops()) {
 			OEntry.create().source(e.getEntity()).droppedItem(drop, e.getEntity().getLocation()).save();
 		}

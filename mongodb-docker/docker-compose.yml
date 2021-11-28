@@ -7,7 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /srv/omniscience-mongodb:/data/db
+      - ./data:/data/db
     expose:
       - "27017"
     restart: unless-stopped

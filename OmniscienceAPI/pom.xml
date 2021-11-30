@@ -5,9 +5,16 @@
     <parent>
         <artifactId>Omniscience</artifactId>
         <groupId>io.github.warhead501</groupId>
-        <version>1.1</version>
+        <version>1.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>apache.snapshots</id>
+            <url>https://repository.apache.org/snapshots/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <artifactId>OmniscienceAPI</artifactId>
     <build>
@@ -15,9 +22,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.9.0-SNAPSHOT</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>

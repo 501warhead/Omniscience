@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.github.warhead501.omniscience.api.OmniApi;
+import io.github.warhead501.omniscience.api.OmniVersionHelper;
 import io.github.warhead501.omniscience.api.display.*;
 import io.github.warhead501.omniscience.api.entry.*;
 import io.github.warhead501.omniscience.api.flag.*;
@@ -18,6 +19,7 @@ import io.github.warhead501.omniscience.command.util.OmniTeleCommand;
 import io.github.warhead501.omniscience.listener.CraftBookSignListener;
 import io.github.warhead501.omniscience.listener.PluginInteractionListener;
 import io.github.warhead501.omniscience.listener.WandInteractListener;
+import lv.voop.essn.paper.utils.EssnPaperUtil;
 import me.lucko.commodore.Commodore;
 import me.lucko.commodore.CommodoreProvider;
 import io.github.warhead501.omniscience.io.StorageHandler;
@@ -26,6 +28,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -43,10 +46,14 @@ final class OmniCore implements IOmniscience {
     private WorldEditHandler worldEditHandler;
     private StorageHandler storageHandler;
 
+    private OmniVersionHelper versionHelper;
+
     OmniCore() {
     }
 
     void onEnable(Omniscience omniscience, BukkitScheduler scheduler) {
+        this.versionHelper = OmniVersionHelper.get(EssnPaperUtil.getNMSVersion());
+        if (this.versionHelper==null) throw new UnsupportedOperationException("Omni does not support "+EssnPaperUtil.getNMSVersion()+" version!");
         try {
             OmniApi.setCore(this);
         } catch (IllegalAccessException e) {
@@ -264,6 +271,11 @@ final class OmniCore implements IOmniscience {
             throw new IllegalArgumentException("A handler was attempted to be registered that has conflicting flags with another handler! " + handler.getClass());
         }
         parameterHandlerList.add(handler);
+    }
+
+    @Override
+    public @NotNull OmniVersionHelper getVersion() {
+        return this.versionHelper;
     }
 
     @Override

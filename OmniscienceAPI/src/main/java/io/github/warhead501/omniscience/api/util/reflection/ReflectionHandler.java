@@ -1,7 +1,7 @@
 package io.github.warhead501.omniscience.api.util.reflection;
 
-import lv.voop.essn.paper.utils.EssnPaperUtil;
-import lv.voop.essn.paper.utils.GameVersion;
+import io.github.warhead501.omniscience.api.OmniApi;
+import io.github.warhead501.omniscience.api.OmniVersionHelper;
 import org.bson.internal.Base64;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
@@ -26,7 +26,7 @@ import java.util.UUID;
 public final class ReflectionHandler {
 
     final private static String CRAFTBUKKIT_PATH = "org.bukkit.craftbukkit." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".";
-    final private static String PATH = GameVersion.get(EssnPaperUtil.getNMSVersion()).equals(GameVersion.v1_18_R1)?"net.minecraft.":"net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".";
+    final private static String PATH = OmniApi.getOmniscience().getVersion().getNMS_PATH();
     private static Method asNMSCopy;
     private static Method getNMSEntity;
     private static Method loadEntityFromNBT;
@@ -40,27 +40,16 @@ public final class ReflectionHandler {
     private static Method streamToolsWriteCompoundToOutput;
 
     static {
+        OmniVersionHelper versionHelper = OmniApi.getOmniscience().getVersion();
         try {
-            Class<?> NBTTagCompound;
-            Class<?> NMSItemStack;
-            Class<?> NMSEntity;
-            Class<?> NBTCompressedStreamTools;
-            if (GameVersion.get(EssnPaperUtil.getNMSVersion()).isNewNmsName()) {
-                NBTTagCompound = Class.forName(PATH + "nbt.NBTTagCompound");
-                NBTCompressedStreamTools = Class.forName(PATH + "nbt.NBTCompressedStreamTools");
-                NMSItemStack = Class.forName(PATH + "world.item.ItemStack");
-                NMSEntity = Class.forName(PATH + "world.entity.Entity");
-            } else {
-                NBTTagCompound = Class.forName(PATH + "NBTTagCompound");
-                NMSItemStack = Class.forName(PATH + "ItemStack");
-                NMSEntity = Class.forName(PATH + "Entity");
-                NBTCompressedStreamTools = Class.forName(PATH + "NBTCompressedStreamTools");
-            }
-
+            Class<?> NBTTagCompound = Class.forName(PATH + versionHelper.getNBTTagCompound());
+            Class<?> NMSItemStack = Class.forName(PATH + versionHelper.getNMSItemStack());
+            Class<?> NMSEntity = Class.forName(PATH + versionHelper.getNMSEntity());
+            Class<?> NBTCompressedStreamTools = Class.forName(PATH + versionHelper.getNBTCompressedStreamTools());
             Class<?> craftBukkitEntity = Class.forName(CRAFTBUKKIT_PATH + "entity.CraftEntity");
             Class<?> craftBukkitItemStack = Class.forName(CRAFTBUKKIT_PATH + "inventory.CraftItemStack");
 
-            setCompoundFloat = NBTTagCompound.getMethod(GameVersion.get(EssnPaperUtil.getNMSVersion()).isNewNmsName()?"a":"setFloat", String.class, float.class);
+            setCompoundFloat = NBTTagCompound.getMethod(versionHelper.getSetCompoundFloatMethodName(), String.class, float.class);
             for (Method method : NMSEntity.getMethods()) {
                 for (Type type : method.getGenericParameterTypes()) {
                     if (type.getTypeName().equalsIgnoreCase(NBTTagCompound.getTypeName())
@@ -104,8 +93,8 @@ public final class ReflectionHandler {
             }
             compoundConstructor = NBTTagCompound.getConstructor();
 
-            saveToJson = NMSItemStack.getMethod(GameVersion.get(EssnPaperUtil.getNMSVersion()).isNewNmsName()?"b":"save", NBTTagCompound);
-            saveEntityToJson = NMSEntity.getMethod(GameVersion.get(EssnPaperUtil.getNMSVersion()).isNewNmsName()?"f":"save", NBTTagCompound);
+            saveToJson = NMSItemStack.getMethod(versionHelper.getSaveToJsonMethodName(), NBTTagCompound);
+            saveEntityToJson = NMSEntity.getMethod(versionHelper.getSaveToJsonMethodName(), NBTTagCompound);
 
             getNMSEntity = craftBukkitEntity.getMethod("getHandle");
             asNMSCopy = craftBukkitItemStack.getMethod("asNMSCopy", ItemStack.class);

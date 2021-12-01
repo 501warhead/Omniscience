@@ -1,9 +1,11 @@
 package io.github.warhead501.omniscience.api.interfaces;
 
+import io.github.warhead501.omniscience.api.OmniVersionHelper;
 import io.github.warhead501.omniscience.api.parameter.ParameterHandler;
 import io.github.warhead501.omniscience.api.entry.DataEntry;
 import io.github.warhead501.omniscience.api.flag.FlagHandler;
 import io.github.warhead501.omniscience.api.util.PastTenseWithEnabled;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,8 @@ import java.util.Optional;
 import java.util.logging.Level;
 
 public interface IOmniscience {
+
+    @NotNull OmniVersionHelper getVersion();
 
     Optional<Class<? extends DataEntry>> getEventClass(String name);
 

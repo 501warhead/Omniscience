@@ -94,7 +94,7 @@ public final class ReflectionHandler {
             compoundConstructor = NBTTagCompound.getConstructor();
 
             saveToJson = NMSItemStack.getMethod(versionHelper.getSaveToJsonMethodName(), NBTTagCompound);
-            saveEntityToJson = NMSEntity.getMethod(versionHelper.getSaveToJsonMethodName(), NBTTagCompound);
+            saveEntityToJson = NMSEntity.getMethod(versionHelper.getSaveEntityToJson(), NBTTagCompound);
 
             getNMSEntity = craftBukkitEntity.getMethod("getHandle");
             asNMSCopy = craftBukkitItemStack.getMethod("asNMSCopy", ItemStack.class);

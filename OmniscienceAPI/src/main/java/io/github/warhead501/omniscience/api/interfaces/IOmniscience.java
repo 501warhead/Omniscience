@@ -5,6 +5,7 @@ import io.github.warhead501.omniscience.api.parameter.ParameterHandler;
 import io.github.warhead501.omniscience.api.entry.DataEntry;
 import io.github.warhead501.omniscience.api.flag.FlagHandler;
 import io.github.warhead501.omniscience.api.util.PastTenseWithEnabled;
+import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -53,4 +54,6 @@ public interface IOmniscience {
     void registerWorldEditHandler(WorldEditHandler handler);
 
     String getDateFormat();
+
+    NamespacedKey getItemKey();
 }

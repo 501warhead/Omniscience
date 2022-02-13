@@ -12,6 +12,7 @@ import io.github.warhead501.omniscience.api.flag.*;
 import io.github.warhead501.omniscience.api.interfaces.IOmniscience;
 import io.github.warhead501.omniscience.api.interfaces.WorldEditHandler;
 import io.github.warhead501.omniscience.api.parameter.*;
+import io.github.warhead501.omniscience.api.util.OmniUtils;
 import io.github.warhead501.omniscience.api.util.PastTenseWithEnabled;
 import io.github.warhead501.omniscience.command.OmniscienceCommand;
 import io.github.warhead501.omniscience.command.OmniscienceTabCompleter;
@@ -19,11 +20,12 @@ import io.github.warhead501.omniscience.command.util.OmniTeleCommand;
 import io.github.warhead501.omniscience.listener.CraftBookSignListener;
 import io.github.warhead501.omniscience.listener.PluginInteractionListener;
 import io.github.warhead501.omniscience.listener.WandInteractListener;
-import lv.voop.essn.paper.utils.EssnPaperUtil;
+import lombok.Getter;
 import me.lucko.commodore.Commodore;
 import me.lucko.commodore.CommodoreProvider;
 import io.github.warhead501.omniscience.io.StorageHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -46,14 +48,17 @@ final class OmniCore implements IOmniscience {
     private WorldEditHandler worldEditHandler;
     private StorageHandler storageHandler;
 
+    @Getter private NamespacedKey itemKey;
+
     private OmniVersionHelper versionHelper;
 
     OmniCore() {
     }
 
     void onEnable(Omniscience omniscience, BukkitScheduler scheduler) {
-        this.versionHelper = OmniVersionHelper.get(EssnPaperUtil.getNMSVersion());
-        if (this.versionHelper==null) throw new UnsupportedOperationException("Omni does not support "+EssnPaperUtil.getNMSVersion()+" version!");
+        this.itemKey = new NamespacedKey(omniscience,"omnisciencetool");
+        this.versionHelper = OmniVersionHelper.get(OmniUtils.getNMSVersion());
+        if (this.versionHelper==null) throw new UnsupportedOperationException("Omni does not support "+OmniUtils.getNMSVersion()+" version!");
         try {
             OmniApi.setCore(this);
         } catch (IllegalAccessException e) {
@@ -95,9 +100,7 @@ final class OmniCore implements IOmniscience {
 
         if (omniscience.getConfig().getBoolean("integration.worldEdit")
                 && Bukkit.getServer().getPluginManager().isPluginEnabled("WorldEdit")) {
-
         }
-
         omniscience.getLogger().log(Level.INFO, "Omniscience is Awake. None can escape.");
     }
 
@@ -352,4 +355,5 @@ final class OmniCore implements IOmniscience {
     public String getDateFormat() {
         return OmniConfig.INSTANCE.getDateFormat();
     }
+
 }

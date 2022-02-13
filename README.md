@@ -85,8 +85,6 @@ Plugins can create their own parameters, so this list can never be fully complet
 * **Usage:** Specify a comma-seperated list of worlds to filter events that involve them. Add a `!` in front of the worlds to exclude it from the search. Will not work for blocks.
 * **Example:** `w:world`, `w:world,world_nether`, `i:world,!world_nether`
 
-## Compilation
-* Use `gradle shadowJar publishToMavenLocal`
 ### Gradle
 * Kotlin – `compileOnly("io.github.warhead501.omni:OmniscienceAPI:<latest>")`
 * Groovy – `compileOnly 'io.github.warhead501.omni:OmniscienceAPI:<latest>'`

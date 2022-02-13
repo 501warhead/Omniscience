@@ -3,12 +3,12 @@ package io.github.warhead501.omniscience;
 import io.github.warhead501.omniscience.io.dynamo.DynamoStorageHandler;
 import io.github.warhead501.omniscience.io.StorageHandler;
 import io.github.warhead501.omniscience.io.mongo.MongoStorageHandler;
-import lv.voop.essn.paper.utils.item.ItemUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 /**
  * The singular location for all end user configured directives from the plugin.yml
@@ -257,7 +257,10 @@ public enum OmniConfig {
      */
     public ItemStack getWandItem() {
         ItemStack is = new ItemStack(this.wandMaterial);
-        ItemUtils.setCustomTag(is,"omnisciencetool","tool");
+        var meta = is.getItemMeta();
+        var container = meta.getPersistentDataContainer();
+        container.set(Omniscience.getInstance().getItemKey(), PersistentDataType.STRING,"tool");
+        is.setItemMeta(meta);
         return is;
     }
 

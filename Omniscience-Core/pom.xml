@@ -5,7 +5,7 @@
     <parent>
         <artifactId>Omniscience</artifactId>
         <groupId>io.github.warhead501</groupId>
-        <version>1.2.1</version>
+        <version>1.2.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -86,7 +86,7 @@
         <dependency>
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-bukkit</artifactId>
-            <version>7.2.0-SNAPSHOT</version>
+            <version>7.3.0-SNAPSHOT</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>

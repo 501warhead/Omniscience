@@ -38,7 +38,6 @@ public class EventBreakListener extends OmniListener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockBreak(BlockBreakEvent event) {
-        //System.out.println("Block Break - " + event.getBlock().getType());
         OEntry.create().source(event.getPlayer()).brokeBlock(new LocationTransaction<>(event.getBlock().getLocation(), event.getBlock().getState(), null)).save();
         saveContainerDrops(event.getPlayer(), event.getBlock());
         //For rollbacks and restores dependents should be saved after the parent

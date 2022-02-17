@@ -98,3 +98,7 @@ Plugins can create their own parameters, so this list can never be fully complet
     <scope>provided</scope>
 </dependency>
 ```
+
+### Available on Repo's
+
+* #### VoopLV `https://repo.voop.lv/repository/vooplv-public/`

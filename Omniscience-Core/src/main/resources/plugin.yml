@@ -3,7 +3,7 @@ version: ${project.version}
 main: io.github.warhead501.omniscience.Omniscience
 softdepend: [WorldEdit, FastAsyncWorldEdit, CraftBook]
 authors: [501warhead]
-description: The Spigot solution to block logging and rollbacks for 1.13.2+
+description: The Spigot solution to block logging and rollbacks for 1.16.x+
 website: https://github.com/501warhead/Omniscience
 api-version: 1.16
 

@@ -26,14 +26,10 @@ public class EventPlaceListener extends OmniListener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockPlace(BlockPlaceEvent event) {
         // Escape out because we don't want to log sign placements twice.
-        if (event.getBlock().getState() instanceof Sign) {
-            return;
-        }
-
-        if (event.getBlockPlaced().getType().equals(Material.LECTERN) || event.getBlockPlaced().getType().equals(Material.SOUL_LANTERN) && event.getBlockPlaced().getState() instanceof Lectern &&
+        if (event.getBlock().getState() instanceof Sign) return;
+        if (event.getBlockPlaced().getState() instanceof Lectern lectern &&
                 (event.getItemInHand().getType().equals(Material.WRITTEN_BOOK) || event.getItemInHand().getType().equals(Material.WRITABLE_BOOK)) &&
                 isEnabled("deposit")) {
-            Lectern lectern = (Lectern) event.getBlockPlaced().getState();
             EventInventoryListener.saveLecternTransaction(event.getPlayer(), event.getItemInHand(), lectern, InventoryTransaction.ActionType.DEPOSIT);
             return;
         }
@@ -60,7 +56,7 @@ public class EventPlaceListener extends OmniListener {
             }
             OEntry.create().source(event.getPlayer()).placedBlock(new LocationTransaction<>(event.getBlock().getLocation(), null, sign)).save();
         } else {
-            Omniscience.getPluginInstance().getLogger().info("Unaple to parse changed sign for; " + event.getBlock());
+            Omniscience.getPluginInstance().getLogger().info("Unable to parse changed sign for; " + event.getBlock());
         }
     }
 

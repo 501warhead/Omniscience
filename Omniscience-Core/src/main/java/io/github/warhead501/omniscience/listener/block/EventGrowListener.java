@@ -21,7 +21,7 @@ public class EventGrowListener extends OmniListener {
     public void onStructureGrow(StructureGrowEvent e) {
         if (isEnabled("grow")) {
             for (BlockState block : e.getBlocks()) {
-                OEntry.create().source(e.getPlayer()).grewBlock(new LocationTransaction<>(block.getLocation(), block, null)).save();
+                OEntry.create().source(e.getPlayer()).grewBlock(new LocationTransaction<>(block.getLocation(), null, block)).save();
             }
         }
     }
@@ -29,14 +29,14 @@ public class EventGrowListener extends OmniListener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockGrow(BlockGrowEvent e) {
         if (isEnabled("grow")) {
-            OEntry.create().source(null).grewBlock(new LocationTransaction<>(e.getBlock().getLocation(), e.getNewState(), e.getBlock().getState())).save();
+            OEntry.create().source(null).grewBlock(new LocationTransaction<>(e.getBlock().getLocation(), e.getBlock().getState(), e.getNewState())).save();
         }
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockSpread(BlockSpreadEvent e) {
         if (isEnabled("grow")) {
-            OEntry.create().source(null).grewBlock(new LocationTransaction<>(e.getBlock().getLocation(), e.getNewState(), e.getBlock().getState())).save();
+            OEntry.create().source(null).grewBlock(new LocationTransaction<>(e.getBlock().getLocation(), e.getBlock().getState(), e.getNewState())).save();
         }
     }
 }

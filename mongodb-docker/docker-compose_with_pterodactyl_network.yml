@@ -11,3 +11,7 @@ services:
     expose:
       - "27017"
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: pterodactyl_nw

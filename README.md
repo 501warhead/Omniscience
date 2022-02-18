@@ -52,6 +52,10 @@ Plugins can create their own parameters, so this list can never be fully complet
 * **Usage:** Specify a comma-seperated list of players or uuids to filter by that specific player. Add a `!` in front of their name to exclude players from the search.
 * **Example:** `p:501warhead`, `p:501warhead,Tofuus`, `p:501warhead,!Tofuus`
 
+##### `ip:<ip>` - IP
+* **Usage:** Specify a comma-seperated list of involved IPs to filter events that involve them. Add a `!` in front of the IP to exclude it from the search.
+* **Example:** `i:192.168.0.1`, `i:192.168.0.1,!127.0.0.1`
+
 ##### `t:<time>` - Time
 * **Default:** `3d` (Changable in `config.yml`)
   Usage: Specify a shorthand time to filter out records older than the specified time.
@@ -84,6 +88,22 @@ Plugins can create their own parameters, so this list can never be fully complet
 ##### `w:<World>` - World
 * **Usage:** Specify a comma-seperated list of worlds to filter events that involve them. Add a `!` in front of the worlds to exclude it from the search. Will not work for blocks.
 * **Example:** `w:world`, `w:world,world_nether`, `i:world,!world_nether`
+
+##### `d:<text>` - Item Description
+* **Usage:** Specify a comma-seperated list of words to search for in item descriptions. Add a `!` in front of the word to exclude it from the search.
+* **Example:** `d:badword`, `d:501warhead,cool`, `d:501warhead,cool,!jk`
+
+##### `n:<text>` - Item Name
+* **Usage:** Specify a comma-seperated list of words to search for in item names. Add a `!` in front of the word to exclude it from the search.
+* **Example:** `n:badword`, `n:501warhead,cool`, `n:501warhead,cool,!jk`
+
+##### `cu:<yes|no>` - Custom Item
+* **Usage:** Specify whether to only show interactions involving items with custom metadata.
+* **Example:** `cu:yes`, `cu:no`
+
+##### `trg:<misc>` - Target
+* **Usage:** Specify a comma-seperated list of all-capital words to search for as targets. Add a `!` in front of the target to exclude it from the search.
+* **Example:** `trg:COW`, `trg:COW,COBBLESTONE,127.0.0.1`, `trg:COBBLESTONE,!COW`
 
 ### Gradle
 * Kotlin – `compileOnly("io.github.warhead501.omni:OmniscienceAPI:<latest>")`

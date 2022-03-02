@@ -6,7 +6,7 @@
 
 	<groupId>io.github.warhead501</groupId>
 	<artifactId>Omniscience</artifactId>
-	<version>1.2.3</version>
+	<version>1.2.4</version>
 	<modules>
 		<module>OmniscienceAPI</module>
 		<module>Omniscience-Core</module>
@@ -92,7 +92,7 @@
 		<dependency>
 			<groupId>io.papermc.paper</groupId>
 			<artifactId>paper-api</artifactId>
-			<version>1.18-R0.2-SNAPSHOT</version>
+			<version>1.18.1-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

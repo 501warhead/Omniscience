@@ -32,8 +32,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.9.0-SNAPSHOT</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -108,7 +108,7 @@
         <dependency>
             <groupId>me.lucko</groupId>
             <artifactId>commodore</artifactId>
-            <version>1.11</version>
+            <version>1.13</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

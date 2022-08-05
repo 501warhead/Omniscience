@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import io.github.warhead501.omniscience.api.query.QuerySession;
 import io.github.warhead501.omniscience.api.entry.DataEntry;
 import io.github.warhead501.omniscience.api.flag.Flag;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 

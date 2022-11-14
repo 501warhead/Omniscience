@@ -1,13 +1,13 @@
 # Omniscience
 A flexible all-around No SQL logging system for spigot/paper spigot ecosystems with hooks for custom logging patterns.
 
-**Project fork notice:** *This project is forked from 501Warhead/Omniscience (https://github.com/501warhead/Omniscience). To prevent any confusion this is not lord of the craft version, but this version has included 1.17.+ fixes more features are coming soon!*
+**Project fork notice:** *This project is forked from 501Warhead/Omniscience (https://github.com/501warhead/Omniscience). To prevent any confusion this is not lord of the craft version, but this version has included 1.18.+ fixes more features are coming soon!*
 
 ## About
 
 Omniscience is a document-driven logging system based heavily on the concepts incorperated in Prism, but intended for the spigot/paper spigot ecosystem. Using parameter-driven commands combined with optional flags you can take deep dives into the ever progressing story of each player and what they do on your server.
 
-Omniscience is a great project that was released open source for use, and I'm forever thankful to 501 for releasing it. While the majority is done and maintenance to 1.16 is completed, expanding upon Omniscience to ensure it remains an excellent tool is on the long list of projects to complete. We hope that anyone needing a simple, No SQL solution can make use of this system just as we have, though as stated above, there is no official public release.
+Omniscience is a great project that was released open source for use, and I'm forever thankful to 501 for releasing it. While the majority is done and maintenance to 1.18 is completed, expanding upon Omniscience to ensure it remains an excellent tool is on the long list of projects to complete. We hope that anyone needing a simple, No SQL solution can make use of this system just as we have, though as stated above, there is no official public release.
 
 ### Original Author
 *Omniscience is something of a passion project for me. Lord of the Craft is a strongly roleplay focused server that incorperates many aspects of Minecraft into it's day to day operation. We jumped from LogBlock to HawkEye to CoreProtect and none of them could quite satisfy the in-depth chat logging we needed, the api hooks we needed, and the block logging/rollbacks we needed. I saw the oppertunity to create something unique and robust, and thus Omniscience was born.*

@@ -6,7 +6,7 @@
 
 	<groupId>io.github.warhead501</groupId>
 	<artifactId>Omniscience</artifactId>
-	<version>1.3</version>
+	<version>1.3.1</version>
 	<modules>
 		<module>OmniscienceAPI</module>
 		<module>Omniscience-Core</module>
@@ -15,7 +15,7 @@
 
 	<name>Omniscience</name>
 
-	<description>The Spigot solution to block logging and rollbacks for 1.16.5+</description>
+	<description>The Spigot solution to block logging and rollbacks for 1.18.x+</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

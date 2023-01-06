@@ -35,7 +35,8 @@ public enum OmniVersionHelper {
     v1_18_R1("net.minecraft.","nbt.NBTTagCompound",
             "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
     v1_18_R2("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
-    v1_19_R1("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f");
+    v1_19_R1("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
+    v1_19_R2("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f");
 
     @Getter private final String NMS_PATH;
     @Getter private final String NBTTagCompound;

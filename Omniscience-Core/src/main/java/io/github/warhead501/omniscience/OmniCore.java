@@ -58,7 +58,7 @@ final class OmniCore implements IOmniscience {
     void onEnable(Omniscience omniscience, BukkitScheduler scheduler) {
         this.itemKey = new NamespacedKey(omniscience,"omnisciencetool");
         this.versionHelper = OmniVersionHelper.get(OmniUtils.getNMSVersion());
-        if (this.versionHelper==null) throw new UnsupportedOperationException("Omni does not support "+OmniUtils.getNMSVersion()+" version!");
+        if (this.versionHelper==null) throw new UnsupportedOperationException("Omni does not support "+OmniUtils.getNMSVersion()+" version! But it was reporting back as "+OmniUtils.getNMSVersion());
         try {
             OmniApi.setCore(this);
         } catch (IllegalAccessException e) {

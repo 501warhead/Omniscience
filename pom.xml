@@ -6,7 +6,7 @@
 
 	<groupId>io.github.warhead501</groupId>
 	<artifactId>Omniscience</artifactId>
-	<version>1.3.2</version>
+	<version>1.3.3</version>
 	<modules>
 		<module>OmniscienceAPI</module>
 		<module>Omniscience-Core</module>

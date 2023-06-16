@@ -8,36 +8,13 @@ import org.jetbrains.annotations.Nullable;
 
 @RequiredArgsConstructor
 public enum OmniVersionHelper {
-    /*
-    v1_16_R1("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".",
-            "NBTTagCompound","NBTCompressedStreamTools","ItemStack","Entity",
-            "setFloat","save","save"),
-    v1_16_R2("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".",
-            "NBTTagCompound","NBTCompressedStreamTools","ItemStack","Entity",
-            "setFloat","save","save"),
-    v1_16_R3("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".",
-            "NBTTagCompound","NBTCompressedStreamTools","ItemStack","Entity",
-            "setFloat","save","save"),
-    v1_16_R4("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".",
-            "NBTTagCompound","NBTCompressedStreamTools","ItemStack","Entity",
-            "setFloat","save","save"),
-    v1_16_R5("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".",
-            "NBTTagCompound","NBTCompressedStreamTools","ItemStack","Entity",
-            "setFloat","save","save"),
-    v1_17_R1("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".",
-            "NBTTagCompound","NBTCompressedStreamTools","ItemStack","Entity",
-            "setFloat","save","save"),
-    v1_17_R2("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + ".",
-            "NBTTagCompound","NBTCompressedStreamTools","ItemStack","Entity",
-            "setFloat","save","save"),
-     */
-
     v1_18_R1("net.minecraft.","nbt.NBTTagCompound",
             "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
     v1_18_R2("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
     v1_19_R1("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
     v1_19_R2("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
-    v1_19_R3("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f");
+    v1_19_R3("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f"),
+    v1_20_R1("net.minecraft.","nbt.NBTTagCompound", "nbt.NBTCompressedStreamTools","world.item.ItemStack","world.entity.Entity","a","b","f");
     @Getter private final String NMS_PATH;
     @Getter private final String NBTTagCompound;
     @Getter private final String NBTCompressedStreamTools;
